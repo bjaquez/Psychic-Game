@@ -10,30 +10,32 @@ var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.l
 document.onkeyup = function(event) {
     
     var userGuess = event.key.toLowerCase();
-    // for (var i = 0; i < allGuesses.length; i++){
-    //     if (allGuesses[i] === userGuess){
-    //     alert("Already Guessed Try Again");
-    //     }    
-          
-    // }
-    
-    if (userGuess === computerGuess){
+    isUsed = false;
+
+    for (var i = 0; i < allGuesses.length; i++){
+        if (allGuesses[i] === userGuess){
+        alert("Already guessed that letter. Try Again");
+        isUsed = true;
+        }
+    }
+    if (isUsed === false){
+
+        if (userGuess === computerGuess){
         wins++
         guessesLeft = 10;
         allGuesses = [];
         computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
         
-    }
-    else if (allGuesses.indexOf(userGuess) !== -1){
-        alert("Already Guessed");
-    }
+        }
 
-    else {
-       
+        else {
+
         allGuesses.push(userGuess);
         guessesLeft--;
     
-    }
+        }
+    
+    } 
 
     if (guessesLeft === 0){   
         losses++
@@ -49,9 +51,9 @@ document.onkeyup = function(event) {
     document.getElementById("guesssofar").textContent = allGuesses;
 
 
-    console.log(allGuesses);
-    console.log(computerGuess);
-    console.log(wins);
-    console.log(guessesLeft);
+    // console.log(allGuesses);
+    // console.log(computerGuess);
+    // console.log(wins);
+    // console.log(guessesLeft);
 }
 
